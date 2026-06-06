@@ -28,6 +28,7 @@ function ProductList(props) {
           <ProductCard
             key={product.id}
             product={product}
+            onRemove={props.onRemove}
           />
         ))
       )}

@@ -2,28 +2,36 @@ import { useState } from "react";
 import ProductList from "./components/ProductList";
 
 function App() {
-  const products = [
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "Laptop",
-      price: 800,
-      inStock: true
+      price: "$999",
+      inStock: true,
     },
     {
       id: 2,
       name: "Phone",
-      price: 500,
-      inStock: false
+      price: "$699",
+      inStock: false,
     },
     {
       id: 3,
-      name: "Headphones",
-      price: 100,
-      inStock: true
-    }
-  ];
+      name: "Tablet",
+      price: "$499",
+      inStock: true,
+    },
+  ]);
 
   const [showInStock, setShowInStock] = useState(false);
+
+  const removeProduct = (id) => {
+    const updatedProducts = products.filter(
+      (product) => product.id !== id
+    );
+
+    setProducts(updatedProducts);
+  };
 
   return (
     <>
@@ -33,6 +41,7 @@ function App() {
         products={products}
         showInStock={showInStock}
         setShowInStock={setShowInStock}
+        onRemove={removeProduct}
       />
     </>
   );
